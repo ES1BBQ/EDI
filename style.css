@@ -77,6 +77,28 @@ hr {
     text-align: center;
 }
 
+/* Logs */
+#log_entry {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#log_entry div {
+    width: 18%;
+}
+#log_entry div:nth-child(6n) {
+    width: 5%;
+}
+
+#log div {
+    width: 20%;
+}
+
+.short {
+    width: 100%
+}
+button.short { width: 2em }
+
 /* Tabs */
 .tabs-container {
     display: flex;

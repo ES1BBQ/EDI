@@ -116,8 +116,21 @@
                     </div>
                     <div>
                         <button id="log_reset">Clear Log</button>
-                        <button id="log_start">Start logging</button>
                     </div>
+                </div>
+                <div class="centered" id="log_entry">
+                    <div>Time</div>
+                    <div>Callsign</div>
+                    <div>RX</div>
+                    <div>Locator</div>
+                    <div>TX</div>
+                    <div></div>
+                    <div><input class="short" type="text" id="current_time"></div>
+                    <div><input class="short" type="text" maxlength="10" style="text-transform:uppercase" autofocus></div>
+                    <div><input class="short" type="text" maxlength="3" placeholder="59"></div>
+                    <div><input class="short" type="text" maxlength="6" style="text-transform:uppercase"></div>
+                    <div><input class="short" type="text" maxlength="3" placeholder="59"></div>
+                    <div><button id="log_write" class="short">&raquo;</button></div>
                 </div>
                 <div class="centered" id="log"></div>
             </div>

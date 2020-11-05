@@ -103,11 +103,21 @@
                     <label for="SAntH">Antenna Height:</label>
                     <input id="SAntH" type="number">
                 </div>
+                <hr>
+                <div class="centered">
+                    <label for="remarks">Remarks:</label>
+                    <input id="remarks" type="text">
+                </div>
             </div>
             <div class="container framed tab" id="edi_log">
                 <div class="centered">
-                    <button id="log_reset">Clear Log</button>
-                    <button id="start logging">Start logging</button>
+                    <div>
+                        <input id="locator" disabled>
+                    </div>
+                    <div>
+                        <button id="log_reset">Clear Log</button>
+                        <button id="log_start">Start logging</button>
+                    </div>
                 </div>
                 <div class="centered" id="log"></div>
             </div>

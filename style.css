@@ -71,6 +71,12 @@ hr {
     border-bottom: 1px solid #777777;
 }
 
+#locator {
+    width: 25em;
+    font-size: 1.3em;
+    text-align: center;
+}
+
 /* Tabs */
 .tabs-container {
     display: flex;

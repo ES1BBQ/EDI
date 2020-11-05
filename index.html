@@ -1,9 +1,131 @@
 <!doctype html>
 <html lang="et">
+<head>
 
-	<head>
-		<title>Simple EDI Generaator by ES1BBQ</title>
-	</head>
-	<body>
-	</body>
+    <meta charset="utf-8">
+    <title>Simple EDI Generaator by ES1BBQ</title>
+    <meta content="Generate EDI logs for ES ULL competition" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <meta content="Simple EDI Generaator" property="og:title">
+    <meta content="website" property="og:type">
+    <meta content="https://es1bbq.gitlab.io/EDI/" property="og:url">
+    <meta content="" property="og:image">
+
+    <meta content='telephone=no' name='format-detection'>
+
+    <!--
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="header centered">
+    <h1>Simple EDI Generator</h1>
+    Uses Browser Local Storage to save your data
+</div>
+
+<div class="wrapper">
+    <div class="tabs-container">
+        <ul class="tabs-header">
+            <li>Headers</li>
+            <li class="default-tab">Log</li>
+            <li>Result</li>
+            <li>Help</li>
+        </ul>
+        <div class="tabs">
+            <div class="container framed tab" id="edi_header">
+                <div class="centered">
+                    <label for="TDate">Date:</label>
+                    <input id="TDate" type="date">
+                </div>
+                <div class="centered">
+                    <label for="PSect">Class:</label>
+                    <select id="PSect">
+                        <option>A</option>
+                        <option>B1</option>
+                        <option>B2</option>
+                    </select>
+                </div>
+                <div class="centered">
+                    <label for="PBand">Band:</label>
+                    <select id="PBand">
+                        <option>50 MHz</option>
+                        <option>144 MHz</option>
+                        <option>432 MHz</option>
+                        <option>1.3 GHz</option>
+                    </select>
+                </div>
+                <hr>
+                <div class="centered">
+                    <label for="PCall">Callsign:</label>
+                    <input id="PCall" style="text-transform:uppercase" type="text">
+                </div>
+                <div class="centered">
+                    <label for="RName">Name:</label>
+                    <input id="RName" type="text">
+                </div>
+                <div class="centered">
+                    <label for="PWWLo">Locator:</label>
+                    <input id="PWWLo" style="text-transform:uppercase" type="text">
+                </div>
+                <div class="centered">
+                    <label for="RCoun">Country:</label>
+                    <select id="RCoun">
+                        <option>Estonia</option>
+                        <option>Finland</option>
+                        <option>Latvia</option>
+                    </select>
+                </div>
+                <hr>
+                <div class="centered">
+                    <label for="STXEq">Transmitter:</label>
+                    <input id="STXEq" type="text">
+                </div>
+                <div class="centered">
+                    <label for="SPowe">Transmitting Power:</label>
+                    <input id="SPowe" type="number">
+                </div>
+                <div class="centered">
+                    <label for="SRXEq">Receiver:</label>
+                    <input id="SRXEq" type="text">
+                </div>
+                <div class="centered">
+                    <label for="SAnte">Antenna:</label>
+                    <input id="SAnte" type="text">
+                </div>
+                <div class="centered">
+                    <label for="SAntH">Antenna Height:</label>
+                    <input id="SAntH" type="number">
+                </div>
+            </div>
+            <div class="container framed tab" id="edi_log">
+                <div class="centered">
+                    <button id="log_reset">Clear Log</button>
+                    <button id="start logging">Start logging</button>
+                </div>
+                <div class="centered" id="log"></div>
+            </div>
+            <div class="container framed tab" id="final_edi">
+                <div class="centered">
+                    <textarea id="finalEDI"></textarea>
+                </div>
+            </div>
+            <div class="container framed tab" id="help">Todo: Help</div>
+        </div>
+    </div>
+</div>
+
+<div class="footer centered">
+    &copy; 2020 ES1BBQ
+</div>
+
+<script src="app.js" type="application/javascript"></script>
+
+</body>
 </html>

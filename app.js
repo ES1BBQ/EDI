@@ -168,7 +168,7 @@
             document.getElementById('log_rx_rst').value.length>0
         ) {
             QSORecords.push([
-                document.getElementById('TDate').value.substr(2),
+                document.getElementById('TDate').value.substr(2).replaceAll('-', ''),
                 document.getElementById('log_time').value.replaceAll(':', ''),
                 document.getElementById('log_callsign').value.toUpperCase(),
                 document.getElementById('log_mode').value,

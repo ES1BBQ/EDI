@@ -103,7 +103,7 @@
             finalEDI = finalEDI.concat("\n" + i[0] + ";" + i[1] + ";" + i[2] + ";" + i[3] + ";" + i[4] + ";;" + i[6] + ";;;" + i[5] + ";0;;N;N;");
         };
         var finalEDI = "[REG1TEST;1]\n";
-        finalEDI = finalEDI.concat("TName=ULL kv ", (localStorage['PBand']) ? localStorage['PBand'] : document.getElementById('PBand').value , "\n");
+        finalEDI = finalEDI.concat("TName=ULL kv ", (localStorage['PBand']) ? localStorage['PBand'] : document.getElementById('PBand').value, "\n");
         finalEDI = finalEDI.concat("TDate=", (localStorage['TDate']) ? localStorage['TDate'].replaceAll('-', '') : '', ";", (localStorage['TDate']) ? localStorage['TDate'].replaceAll('-', '') : '', "\n");
         finalEDI = finalEDI.concat("PCall=", (localStorage['PCall']) ? localStorage['PCall'].toUpperCase() : '', "\n");
         finalEDI = finalEDI.concat("PWWLo=", (localStorage['PWWLo']) ? localStorage['PWWLo'].toUpperCase() : '', "\n");
@@ -159,13 +159,13 @@
         const QSORecords = JSON.parse(localStorage['QSORecords'] || "[]");
 
         if (
-            document.getElementById('TDate').value.length>0 &&
-            document.getElementById('log_time').value.length>0 &&
-            document.getElementById('log_callsign').value.length>0 &&
-            document.getElementById('log_mode').value.length>0 &&
-            document.getElementById('log_tx_rst').value.length>0 &&
-            document.getElementById('log_loc').value.length>0 &&
-            document.getElementById('log_rx_rst').value.length>0
+            document.getElementById('TDate').value.length > 0 &&
+            document.getElementById('log_time').value.length > 0 &&
+            document.getElementById('log_callsign').value.length > 0 &&
+            document.getElementById('log_mode').value.length > 0 &&
+            document.getElementById('log_tx_rst').value.length > 0 &&
+            document.getElementById('log_loc').value.length > 0 &&
+            document.getElementById('log_rx_rst').value.length > 0
         ) {
             QSORecords.push([
                 document.getElementById('TDate').value.substr(2).replaceAll('-', ''),
@@ -197,25 +197,25 @@
     document.getElementById('log_callsign').addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
-            if(this.value.length>0) document.getElementById("log_mode").focus();
+            if (this.value.length > 0) document.getElementById("log_mode").focus();
         }
     });
     document.getElementById('log_mode').addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
-            if(this.value.length>0) document.getElementById("log_tx_rst").focus();
+            if (this.value.length > 0) document.getElementById("log_tx_rst").focus();
         }
     });
     document.getElementById('log_tx_rst').addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
-            if(this.value.length>0) document.getElementById("log_loc").focus();
+            if (this.value.length > 0) document.getElementById("log_loc").focus();
         }
     });
     document.getElementById('log_loc').addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
-            if(this.value.length>0) document.getElementById("log_rx_rst").focus();
+            if (this.value.length > 0) document.getElementById("log_rx_rst").focus();
         }
     });
     document.getElementById('log_rx_rst').addEventListener("keyup", function (event) {

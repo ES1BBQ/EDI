@@ -86,11 +86,13 @@ hr {
 #log_entry div {
     width: 16%;
 }
+
 #log_entry input {
     text-align: center;
     font-weight: bold;
 }
-#log_entry div:nth-child(7n), #log .logRow div:nth-child(7n)  {
+
+#log_entry div:nth-child(7n), #log .logRow div:nth-child(7n) {
     width: 4%;
     border: 0px;
 }
@@ -103,6 +105,7 @@ hr {
 #log .logRow {
     display: table-row;
 }
+
 #log .logRow div {
     display: table-cell;
     width: 16%;
@@ -112,7 +115,10 @@ hr {
 .short {
     width: 100%
 }
-button.short { width: 2em }
+
+button.short {
+    width: 2em
+}
 
 /* Tabs */
 .tabs-container {

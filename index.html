@@ -112,7 +112,7 @@
             <div class="container framed tab" id="edi_log">
                 <div class="centered">
                     <div>
-                        <input id="locator" disabled>
+                        <input disabled id="locator">
                     </div>
                     <div>
                         <button id="log_reset">Clear Log</button>
@@ -121,16 +121,22 @@
                 <div class="centered" id="log_entry">
                     <div>Time</div>
                     <div>Callsign</div>
-                    <div>RX</div>
+                    <div>Mode</div>
+                    <div>Sent RST</div>
                     <div>Locator</div>
-                    <div>TX</div>
+                    <div>Received RST</div>
                     <div></div>
-                    <div><input class="short" type="text" id="current_time"></div>
-                    <div><input class="short" type="text" maxlength="10" style="text-transform:uppercase" autofocus></div>
-                    <div><input class="short" type="text" maxlength="3" placeholder="59"></div>
-                    <div><input class="short" type="text" maxlength="6" style="text-transform:uppercase"></div>
-                    <div><input class="short" type="text" maxlength="3" placeholder="59"></div>
-                    <div><button id="log_write" class="short">&raquo;</button></div>
+                    <div><input class="short" id="log_time" type="text"></div>
+                    <div><input autofocus class="short" id="log_callsign" maxlength="10"
+                                style="text-transform:uppercase" type="text"></div>
+                    <div><input class="short" id="log_mode" maxlength="1" placeholder="1-6" type="text"></div>
+                    <div><input class="short" id="log_tx_rst" maxlength="3" placeholder="59" type="text"></div>
+                    <div><input class="short" id="log_loc" maxlength="6" style="text-transform:uppercase" type="text">
+                    </div>
+                    <div><input class="short" id="log_rx_rst" maxlength="3" placeholder="59" type="text"></div>
+                    <div>
+                        <button class="short" id="log_write">&raquo;</button>
+                    </div>
                 </div>
                 <div class="centered" id="log"></div>
             </div>

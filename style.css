@@ -84,14 +84,25 @@ hr {
 }
 
 #log_entry div {
-    width: 18%;
+    width: 16%;
 }
-#log_entry div:nth-child(6n) {
-    width: 5%;
+#log_entry div:nth-child(7n), #log .logRow div:nth-child(7n)  {
+    width: 4%;
+    border: 0px;
 }
 
-#log div {
-    width: 20%;
+#log {
+    display: table;
+    width: 100%;
+}
+
+#log .logRow {
+    display: table-row;
+}
+#log .logRow div {
+    display: table-cell;
+    width: 16%;
+    border: 1px solid #cccccc;
 }
 
 .short {

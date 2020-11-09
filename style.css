@@ -312,6 +312,14 @@ body.dark_mode {
   transition: .4s;
 }
 
+/* hack for locate-me button */
+label { position: relative; }
+label > button {
+    position: absolute;
+    right: 0;
+    width: 3em;
+}
+
 /* Field completion check */
 .missing {
     border-color: #DD6031 !important;

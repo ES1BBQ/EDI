@@ -371,6 +371,38 @@
         });
     };
 
+    /** Locate me */
+    const locateMe = function(pos) {
+        let a = "abcdefghijklmnopqrstuvwxyz"
+        /* Positions */
+        lng = pos.coords.longitude;
+        lat = pos.coords.latitude;
+
+        /* Decimals */
+        lng_d = Math.floor(lng);
+        lat_d = Math.floor(lat);
+
+        /* Subsquare */
+        lng_s = Math.floor( ( lng - lng_d ) * 12 );
+        lat_s = Math.floor( ( lat - lat_d ) * 24 );
+
+        qth_1 = a[Math.floor((180+lng_d)/20)];
+        qth_2 = a[Math.floor((90+lat_d)/10)];
+        qth_3 = (lng_d - (10 * Math.floor(lng_d/10)))/2;
+        qth_4 = lat_d - (10 * Math.floor(lat_d/10));
+        qth_5 = a[lng_s];
+        qth_6 = a[lat_s];
+        qth = ''.concat(qth_1,qth_2,qth_3,qth_4,qth_5,qth_6);
+        document.getElementById('PWWLo').value = qth;
+    };
+
+    document.getElementById('locate_me').addEventListener('click', function(){
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(locateMe);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
 
     /** Run all the scrips */
     document.querySelectorAll('.tabs-container').forEach(x => tabify(x));

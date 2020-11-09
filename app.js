@@ -147,8 +147,14 @@
         return ch;
     }
 
-    /** Method to generate/update EDI log */
-    const updateEDI = function () {
+    /** Method to generate/update EDI log and page */
+    const updatePage = function () {
+        /** Update Page */
+        if (localStorage['dark_mode'] && (localStorage['dark_mode'] == 1)) {
+            document.body.classList.add('dark_mode');
+        } else {
+            document.body.classList.remove('dark_mode');
+        }
         /** Update locator value */
         if (localStorage['PWWLo'] && localStorage['PWWLo'].length > 1) {
             let loc = '';
@@ -190,7 +196,7 @@
     const clearLog = function () {
         localStorage['QSORecords'] = JSON.stringify([]);
         updateLog();
-        updateEDI();
+        updatePage();
     }
     document.getElementById('log_reset').addEventListener('click', clearLog);
 
@@ -258,7 +264,7 @@
         }
 
         updateLog();
-        updateEDI();
+        updatePage();
     }
     document.getElementById('log_write').addEventListener('click', addLog)
 
@@ -307,7 +313,7 @@
         if (localStorage[e.id]) e.value = localStorage[e.id];
         e.addEventListener('input', function () {
             localStorage[e.id] = e.value;
-            updateEDI();
+            updatePage();
         });
     };
 
@@ -315,7 +321,7 @@
     const selectSaveAndRestore = function (e) {
         e.addEventListener('change', function () {
             localStorage[e.id] = e.value;
-            updateEDI();
+            updatePage();
         });
         if (localStorage[e.id]) {
             let opts = e.options;
@@ -337,11 +343,9 @@
             } else {
                 localStorage[e.id] = 0;
             }
-            updateEDI();
+            updatePage();
         });
     };
-
-
 
     /** Clock */
     const startClock = function () {
@@ -354,8 +358,8 @@
     document.querySelectorAll('.tabs-container').forEach(x => tabify(x));
     document.querySelectorAll('#edi_header input:not([type="checkbox"])').forEach(x => inputSaveAndRestore(x));
     document.querySelectorAll('#edi_header select').forEach(x => selectSaveAndRestore(x));
-    document.querySelectorAll('#edi_header input[type="checkbox"]').forEach(x => checkboxSaveAndRestore(x));
+    document.querySelectorAll('input[type="checkbox"]').forEach(x => checkboxSaveAndRestore(x));
     updateLog();
-    updateEDI();
+    updatePage();
     startClock();
 })();

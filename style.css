@@ -244,39 +244,35 @@ input:checked + .slider:before {
 
 /* Dark mode */
 
-@media (prefers-color-scheme: dark) {
+body.dark_mode {
+    color: #748CAB;
+    background-color: #010513;
+}
 
-    body {
-        color: #748CAB;
-        background-color: #010513;
-    }
+.dark_mode .tabs-header {
+    background-color: #748CAB;
+}
 
-    .tabs-header {
-        background-color: #748CAB;
-    }
+.dark_mode .tabs-header > li {
+    color: #010513;
+}
 
-    .tabs-header > li {
-        color: #010513;
-    }
+.dark_mode .tabs-header > li.active {
+    color: #748CAB;
+}
 
-    .tabs-header > li.active {
-        color: #748CAB;
-    }
+.dark_mode input, .dark_mode textarea, .dark_mode select, .dark_mode button {
+    border: 1px solid #010513;
+    background-color: #748CAB;
+    color: #010513;
+}
 
-    input, textarea, select, button {
-        border: 1px solid #010513;
-        background-color: #748CAB;
-        color: #010513;
-    }
+.dark_mode input::placeholder {
+    color: #5A7496;
+}
 
-    input::placeholder {
-        color: #5A7496;
-    }
-
-    input:disabled {
-        color: #dddddd;
-        background-color: #010513;
-        border: 1px solid #748CAB;
-    }
-
+.dark_mode input:disabled {
+    color: #dddddd;
+    background-color: #010513;
+    border: 1px solid #748CAB;
 }

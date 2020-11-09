@@ -129,7 +129,7 @@
                     <div><input class="short" disabled id="log_time" type="text"></div>
                     <div><input autofocus class="short" id="log_callsign" maxlength="10"
                                 style="text-transform:uppercase" type="text"></div>
-                    <div><input class="short" id="log_mode" maxlength="1" placeholder="1-6" type="text"></div>
+                    <div><input class="short" id="log_mode" maxlength="1" placeholder="0-9" type="text"></div>
                     <div><input class="short" id="log_tx_rst" maxlength="3" placeholder="59" type="text"></div>
                     <div><input class="short" id="log_loc" maxlength="6" style="text-transform:uppercase" type="text">
                     </div>
@@ -145,7 +145,44 @@
                     <textarea id="finalEDI"></textarea>
                 </div>
             </div>
-            <div class="container framed tab" id="help">Todo: Help</div>
+            <div class="container framed tab" id="help">
+
+                <h2>Log Entry</h2>
+                <p>
+                    <u>All fields are required!</u>
+                    Log time should be calculated and displayed
+                    as UTC time automatically.
+                    <br><br>
+                    <b>Callsigns</b> and <b>Locator</b> codes <u>do not</u> need to be
+                    entered in capital letters, this is done automatically.
+                    <br><br>
+                    Modes:
+                    <table>
+                        <tr><th>Mode code</th><th>TX mode</th><th>RX mode</th></tr>
+                        <tr><td>0</td><td>non of below</td><td>non of below</td></tr>
+                        <tr><td>1</td><td>SSB</td><td>SSB</td></tr>
+                        <tr><td>2</td><td>CW</td><td>CW</td></tr>
+                        <tr><td>3</td><td>SSB</td><td>CW</td></tr>
+                        <tr><td>4</td><td>CW</td><td>SSB</td></tr>
+                        <tr><td>5</td><td>AM</td><td>AM</td></tr>
+                        <tr><td>6</td><td>FM</td><td>FM</td></tr>
+                        <tr><td>7</td><td>RTTY</td><td>RTTY</td></tr>
+                        <tr><td>8</td><td>SSTV</td><td>SSTV</td></tr>
+                        <tr><td>9</td><td>ATV</td><td>ATV</td></tr>
+                    </table>
+                </p>
+                <hr>
+                <h2>Required fields in Header section</h2>
+                <p>
+                    All fields in the Header section exept Remarks are required.
+                    Some browsers support date entry for the date field. For users
+                    with no date entry browser support, a suitable placeholder is
+                    available.
+                    <br><br>
+                    <b>Callsigns</b> and <b>Locator</b> codes <u>do not</u> need to be
+                    entered in capital letters, this is done automatically.
+                </p>
+            </div>
         </div>
     </div>
 </div>

@@ -174,13 +174,24 @@ button.short {
     border-color: #DD6031;
 }
 
+/* Table */
+
+table {
+    border: 1px solid #748CAB;
+    color: #25283D;
+}
+
+tr {
+    background: #748CAB;
+}
+
 /* Dark mode */
 
 @media (prefers-color-scheme: dark) {
 
     body {
         color: #748CAB;
-        background-color: #25283D;
+        background-color: #010513;
     }
 
     .tabs-header {
@@ -188,17 +199,17 @@ button.short {
     }
 
     .tabs-header > li {
-        color: #25283D;
+        color: #010513;
     }
 
     .tabs-header > li.active {
-        color: #F4FAFF;
+        color: #748CAB;
     }
 
     input, textarea, select, button {
-        border: 1px solid #25283D;
+        border: 1px solid #010513;
         background-color: #748CAB;
-        color: #25283D;
+        color: #010513;
     }
 
     input::placeholder {
@@ -207,7 +218,7 @@ button.short {
 
     input:disabled {
         color: #dddddd;
-        background-color: #25283D;
+        background-color: #010513;
         border: 1px solid #748CAB;
     }
 

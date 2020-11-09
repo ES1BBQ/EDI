@@ -88,13 +88,72 @@
         return ch;
     }
 
+    /** Turn locator to finnish fonetic */
+    const ch2faff = function (ch) {
+        switch (ch.toLowerCase()) {
+            case "a":
+                return "AARNE";
+            case "b":
+                return "BERTTA";
+            case "c":
+                return "CELSIUS";
+            case "d":
+                return "DAAVID";
+            case "e":
+                return "EEMELI";
+            case "f":
+                return "FAARAO";
+            case "g":
+                return "GIDEON";
+            case "h":
+                return "HEIKKI";
+            case "i":
+                return "IIVARI";
+            case "j":
+                return "JUSSI";
+            case "k":
+                return "KALLE";
+            case "l":
+                return "LAURI";
+            case "m":
+                return "MATTI";
+            case "n":
+                return "NIILO";
+            case "o":
+                return "OTTO";
+            case "p":
+                return "PAAVO";
+            case "q":
+                return "QUINTUS";
+            case "r":
+                return "RISTO";
+            case "s":
+                return "SAKARI";
+            case "t":
+                return "TAUNO";
+            case "u":
+                return "URHO";
+            case "v":
+                return "VILLE";
+            case "w":
+                return "TUPLAVILLE";
+            case "x":
+                return "ÄKSÄ";
+            case "y":
+                return "YRJO";
+            case "z":
+                return "TSETA";
+        }
+        return ch;
+    }
+
     /** Method to generate/update EDI log */
     const updateEDI = function () {
         /** Update locator value */
         if (localStorage['PWWLo'] && localStorage['PWWLo'].length > 1) {
             let loc = '';
             for (var i = 0; i < localStorage['PWWLo'].length; i++) {
-                loc = loc.concat((i === 0) ? '' : ' ', ch2nato(localStorage['PWWLo'].toLowerCase().charAt(i)))
+                loc = loc.concat((i === 0) ? '' : ' ', (localStorage['finnish_fonetics'] == 1) ? ch2faff(localStorage['PWWLo'].toLowerCase().charAt(i)) : ch2nato(localStorage['PWWLo'].toLowerCase().charAt(i)) )
             }
             document.getElementById('locator').value = loc;
         }
@@ -245,7 +304,7 @@
 
     /** Method to store and restore input field values for EDI header */
     const inputSaveAndRestore = function (e) {
-        if (localStorage[e.id]) e.value = localStorage[e.id]
+        if (localStorage[e.id]) e.value = localStorage[e.id];
         e.addEventListener('input', function () {
             localStorage[e.id] = e.value;
             updateEDI();
@@ -269,6 +328,21 @@
         }
     };
 
+    /** Method to store and restore checkbox values for EDI header */
+    const checkboxSaveAndRestore = function (e) {
+        if (localStorage[e.id] && (localStorage[e.id] == 1)) e.checked = true;
+        e.addEventListener('change', function () {
+            if(e.checked){
+                localStorage[e.id] = 1;
+            } else {
+                localStorage[e.id] = 0;
+            }
+            updateEDI();
+        });
+    };
+
+
+
     /** Clock */
     const startClock = function () {
         var ct = new Date();
@@ -278,8 +352,9 @@
 
     /** Run all the scrips */
     document.querySelectorAll('.tabs-container').forEach(x => tabify(x));
-    document.querySelectorAll('#edi_header input').forEach(x => inputSaveAndRestore(x));
+    document.querySelectorAll('#edi_header input:not([type="checkbox"])').forEach(x => inputSaveAndRestore(x));
     document.querySelectorAll('#edi_header select').forEach(x => selectSaveAndRestore(x));
+    document.querySelectorAll('#edi_header input[type="checkbox"]').forEach(x => checkboxSaveAndRestore(x));
     updateLog();
     updateEDI();
     startClock();

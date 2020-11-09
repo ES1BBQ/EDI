@@ -16,6 +16,8 @@ html, body {
     font-family: 'Cairo', sans-serif;
     color: #25283D;
     background-color: #F4FAFF;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .header {
@@ -51,14 +53,20 @@ input, textarea, select, button {
     padding: 0.2rem;
     font-size: 0.9em;
     font-family: 'Cairo', sans-serif;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 input::placeholder {
     color: #dddddd;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 input:disabled {
     color: #25283D;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 button {
@@ -147,7 +155,7 @@ button.short {
 }
 
 .tabs-header > li {
-    color: #fff;
+    color: #010513;
     cursor: pointer;
     flex-grow: 1;
     padding: .375rem;
@@ -158,6 +166,7 @@ button.short {
 
 .tabs-header > li.active {
     background-color: #25283D;
+    color: #F4FAFF;
 }
 
 .tabs {
@@ -247,32 +256,34 @@ input:checked + .slider:before {
 body.dark_mode {
     color: #748CAB;
     background-color: #010513;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .dark_mode .tabs-header {
     background-color: #748CAB;
-}
-
-.dark_mode .tabs-header > li {
-    color: #010513;
-}
-
-.dark_mode .tabs-header > li.active {
-    color: #748CAB;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .dark_mode input, .dark_mode textarea, .dark_mode select, .dark_mode button {
     border: 1px solid #010513;
     background-color: #748CAB;
     color: #010513;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .dark_mode input::placeholder {
     color: #5A7496;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .dark_mode input:disabled {
     color: #dddddd;
     background-color: #010513;
     border: 1px solid #748CAB;
+    -webkit-transition: .4s;
+    transition: .4s;
 }

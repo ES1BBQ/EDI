@@ -390,6 +390,8 @@
         let qth_6 = a[Math.floor( ( lat - lat_d ) * 24 )];
         let qth = ''.concat(qth_1,qth_2,qth_3,qth_4,qth_5,qth_6);
         document.getElementById('PWWLo').value = qth;
+        localStorage['PWWLo'] = qth;
+        updatePage();
     };
 
     document.getElementById('locate_me').addEventListener('click', function(){

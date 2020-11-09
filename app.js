@@ -375,24 +375,20 @@
     const locateMe = function(pos) {
         let a = "abcdefghijklmnopqrstuvwxyz"
         /* Positions */
-        lng = pos.coords.longitude;
-        lat = pos.coords.latitude;
+        let lng = pos.coords.longitude;
+        let lat = pos.coords.latitude;
 
         /* Decimals */
-        lng_d = Math.floor(lng);
-        lat_d = Math.floor(lat);
+        let lng_d = Math.floor(lng);
+        let lat_d = Math.floor(lat);
 
-        /* Subsquare */
-        lng_s = Math.floor( ( lng - lng_d ) * 12 );
-        lat_s = Math.floor( ( lat - lat_d ) * 24 );
-
-        qth_1 = a[Math.floor((180+lng_d)/20)];
-        qth_2 = a[Math.floor((90+lat_d)/10)];
-        qth_3 = (lng_d - (10 * Math.floor(lng_d/10)))/2;
-        qth_4 = lat_d - (10 * Math.floor(lat_d/10));
-        qth_5 = a[lng_s];
-        qth_6 = a[lat_s];
-        qth = ''.concat(qth_1,qth_2,qth_3,qth_4,qth_5,qth_6);
+        let qth_1 = a[Math.floor((180+lng_d)/20)];
+        let qth_2 = a[Math.floor((90+lat_d)/10)];
+        let qth_3 = (lng_d - (10 * Math.floor(lng_d/10)))/2;
+        let qth_4 = lat_d - (10 * Math.floor(lat_d/10));
+        let qth_5 = a[Math.floor( ( lng - lng_d ) * 12 )];
+        let qth_6 = a[Math.floor( ( lat - lat_d ) * 24 )];
+        let qth = ''.concat(qth_1,qth_2,qth_3,qth_4,qth_5,qth_6);
         document.getElementById('PWWLo').value = qth;
     };
 

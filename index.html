@@ -126,7 +126,7 @@
                     <div>Locator</div>
                     <div>Received RST</div>
                     <div></div>
-                    <div><input class="short" disabled id="log_time" type="text"></div>
+                    <div><input class="short" id="log_time" type="text"></div>
                     <div><input autofocus class="short" id="log_callsign" maxlength="10"
                                 style="text-transform:uppercase" type="text"></div>
                     <div><input class="short" id="log_mode" maxlength="1" placeholder="0-9" type="text"></div>
@@ -149,9 +149,9 @@
 
                 <h2>Log Entry</h2>
                 <p>
-                    <u>All fields are required!</u>
-                    Log time should be calculated and displayed
-                    as UTC time automatically.
+                    <u>All fields are required exept time!</u>
+                    Current UTC time will be entered into log when Time
+                    field is left empty.
                     <br><br>
                     <b>Callsigns</b> and <b>Locator</b> codes <u>do not</u> need to be
                     entered in capital letters, this is done automatically.
@@ -190,19 +190,12 @@
 <div class="footer centered">
     <div>
         <div>
-            <label for="live_mode">Live mode:</label>
+            <label for="dark_mode">Dark mode:</label>
             <label class="switch">
-                <input type="checkbox" id="live_mode">
+                <input type="checkbox" id="dark_mode">
                 <span class="slider"></span>
             </label>
         </div>
-            <div>
-                <label for="dark_mode">Dark mode:</label>
-                <label class="switch">
-                    <input type="checkbox" id="dark_mode">
-                    <span class="slider"></span>
-                </label>
-            </div>
         <div>
             <label for="finnish_fonetics">Use finnish fonetics:</label>
             <label class="switch">

@@ -149,14 +149,6 @@
 
     /** Method to generate/update EDI log and page */
     const updatePage = function () {
-        /** Update Live mode */
-        if (localStorage['live_mode'] && (localStorage['live_mode'] == 1)) {
-            startClock();
-            document.getElementById('log_time').disabled = true;
-        } else {
-          document.getElementById('log_time').disabled = false;
-          document.getElementById('log_time').value='';
-        }
 
         /** Update Dark mode */
         if (localStorage['dark_mode'] && (localStorage['dark_mode'] == 1)) {
@@ -245,16 +237,23 @@
         markInputs();
         if (
             document.getElementById('TDate').value.length > 0 &&
-            document.getElementById('log_time').value.length > 0 &&
             document.getElementById('log_callsign').value.length > 0 &&
             document.getElementById('log_mode').value.length > 0 &&
             document.getElementById('log_tx_rst').value.length > 0 &&
             document.getElementById('log_loc').value.length > 0 &&
             document.getElementById('log_rx_rst').value.length > 0
         ) {
+            var current_time = '';
+            if (document.getElementById('log_time').value.length == 0) {
+                let ct = new Date();
+                current_time = ct.toISOString().match(/\d\d:\d\d/).toString().replaceAll(':', '');
+            } else {
+                current_time = document.getElementById('log_time').value.replaceAll(':', '');
+            }
+
             QSORecords.push([
                 document.getElementById('TDate').value.substr(2).replaceAll('-', ''),
-                document.getElementById('log_time').value.replaceAll(':', ''),
+                current_time,
                 document.getElementById('log_callsign').value.toUpperCase(),
                 document.getElementById('log_mode').value,
                 document.getElementById('log_tx_rst').value,
@@ -266,7 +265,7 @@
             /* Reset form values */
             document.getElementById('log_time').value = '';
             document.getElementById('log_callsign').value = '';
-            document.getElementById('log_mode').value = '';
+            //document.getElementById('log_mode').value = '';
             document.getElementById('log_tx_rst').value = '';
             document.getElementById('log_loc').value = '';
             document.getElementById('log_rx_rst').value = '';
@@ -279,22 +278,22 @@
     document.getElementById('log_write').addEventListener('click', addLog)
 
     /** Log input enter magic */
-    document.getElementById('log_callsign').addEventListener("keyup", function (event) {
+    document.getElementById('log_callsign').addEventListener("keydown", function (event) {
         if (this.value.length > 0) this.classList.remove('missing');
         if (event.keyCode === 13) {
             event.preventDefault();
             if (this.value.length > 0) document.getElementById("log_mode").focus();
         }
     });
-    document.getElementById('log_mode').addEventListener("keyup", function (event) {
+    document.getElementById('log_mode').addEventListener("keydown", function (event) {
         if (this.value.length > 0) this.classList.remove('missing');
         if (event.keyCode === 13) {
             event.preventDefault();
             if (this.value.length > 0) document.getElementById("log_tx_rst").focus();
         }
     });
-    document.getElementById('log_tx_rst').addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
+    document.getElementById('log_tx_rst').addEventListener("keydown", function (event) {
+        if ((event.keyCode === 13)||(event.keyCode === 9)) {
             event.preventDefault();
             if (this.value.length == 0) {
               this.value = '59';
@@ -303,15 +302,15 @@
             document.getElementById("log_loc").focus();
         }
     });
-    document.getElementById('log_loc').addEventListener("keyup", function (event) {
+    document.getElementById('log_loc').addEventListener("keydown", function (event) {
         if (this.value.length > 0) this.classList.remove('missing');
         if (event.keyCode === 13) {
             event.preventDefault();
             if (this.value.length > 0) document.getElementById("log_rx_rst").focus();
         }
     });
-    document.getElementById('log_rx_rst').addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
+    document.getElementById('log_rx_rst').addEventListener("keydown", function (event) {
+        if ((event.keyCode === 13)||(event.keyCode === 9)) {
             event.preventDefault();
             if (this.value.length == 0) this.value = '59';
             addLog();
@@ -357,15 +356,6 @@
         });
     };
 
-    /** Clock */
-    const startClock = function () {
-        var ct = new Date();
-        document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/);
-        if (localStorage['live_mode'] && (localStorage['live_mode'] == 1)) {
-            var t = setTimeout(startClock, 500);
-        }
-
-    };
 
     /** Run all the scrips */
     document.querySelectorAll('.tabs-container').forEach(x => tabify(x));

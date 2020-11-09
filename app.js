@@ -149,12 +149,22 @@
 
     /** Method to generate/update EDI log and page */
     const updatePage = function () {
-        /** Update Page */
+        /** Update Live mode */
+        if (localStorage['live_mode'] && (localStorage['live_mode'] == 1)) {
+            startClock();
+            document.getElementById('log_time').disabled = true;
+        } else {
+          document.getElementById('log_time').disabled = false;
+          document.getElementById('log_time').value='';
+        }
+
+        /** Update Dark mode */
         if (localStorage['dark_mode'] && (localStorage['dark_mode'] == 1)) {
             document.body.classList.add('dark_mode');
         } else {
             document.body.classList.remove('dark_mode');
         }
+
         /** Update locator value */
         if (localStorage['PWWLo'] && localStorage['PWWLo'].length > 1) {
             let loc = '';
@@ -351,7 +361,10 @@
     const startClock = function () {
         var ct = new Date();
         document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/);
-        var t = setTimeout(startClock, 500);
+        if (localStorage['live_mode'] && (localStorage['live_mode'] == 1)) {
+            var t = setTimeout(startClock, 500);
+        }
+
     };
 
     /** Run all the scrips */
@@ -361,5 +374,4 @@
     document.querySelectorAll('input[type="checkbox"]').forEach(x => checkboxSaveAndRestore(x));
     updateLog();
     updatePage();
-    startClock();
 })();

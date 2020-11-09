@@ -178,11 +178,6 @@ button.short {
     flex-direction: column;
 }
 
-/* Field completion check */
-.missing {
-    border-color: #DD6031;
-}
-
 /* Table */
 
 table {
@@ -286,4 +281,9 @@ body.dark_mode {
     border: 1px solid #748CAB;
     -webkit-transition: .4s;
     transition: .4s;
+}
+
+/* Field completion check */
+.missing {
+    border-color: #DD6031 !important;
 }

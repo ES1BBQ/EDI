@@ -168,6 +168,11 @@ button.short {
     flex-direction: column;
 }
 
+/* Field completion check */
+.missing {
+    border-color: #DD6031;
+}
+
 /* Dark mode */
 
 @media (prefers-color-scheme: dark) {

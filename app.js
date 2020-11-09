@@ -154,10 +154,20 @@
         QSORecords.forEach(x => genQSORecords(x));
     }
 
+    /** Method to mark missing input */
+    const markInputs = function() {
+        document.querySelectorAll('.missing').forEach(x => x.classList.remove('missing'));
+        if (document.getElementById('log_callsign').value.length == 0) document.getElementById('log_callsign').classList.add('missing');
+        if (document.getElementById('log_mode').value.length == 0) document.getElementById('log_mode').classList.add('missing');
+        if (document.getElementById('log_tx_rst').value.length == 0) document.getElementById('log_tx_rst').classList.add('missing');
+        if (document.getElementById('log_loc').value.length == 0) document.getElementById('log_loc').classList.add('missing');
+        if (document.getElementById('log_rx_rst').value.length == 0) document.getElementById('log_rx_rst').classList.add('missing');
+    }
+
     /** Method to add logs */
     const addLog = function () {
         const QSORecords = JSON.parse(localStorage['QSORecords'] || "[]");
-
+        markInputs();
         if (
             document.getElementById('TDate').value.length > 0 &&
             document.getElementById('log_time').value.length > 0 &&
@@ -195,12 +205,14 @@
 
     /** Log input enter magic */
     document.getElementById('log_callsign').addEventListener("keyup", function (event) {
+        if (this.value.length > 0) this.classList.remove('missing');
         if (event.keyCode === 13) {
             event.preventDefault();
             if (this.value.length > 0) document.getElementById("log_mode").focus();
         }
     });
     document.getElementById('log_mode').addEventListener("keyup", function (event) {
+        if (this.value.length > 0) this.classList.remove('missing');
         if (event.keyCode === 13) {
             event.preventDefault();
             if (this.value.length > 0) document.getElementById("log_tx_rst").focus();
@@ -209,10 +221,15 @@
     document.getElementById('log_tx_rst').addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
-            if (this.value.length > 0) document.getElementById("log_loc").focus();
+            if (this.value.length == 0) {
+              this.value = '59';
+              this.classList.remove('missing');
+            }
+            document.getElementById("log_loc").focus();
         }
     });
     document.getElementById('log_loc').addEventListener("keyup", function (event) {
+        if (this.value.length > 0) this.classList.remove('missing');
         if (event.keyCode === 13) {
             event.preventDefault();
             if (this.value.length > 0) document.getElementById("log_rx_rst").focus();
@@ -221,6 +238,7 @@
     document.getElementById('log_rx_rst').addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
+            if (this.value.length == 0) this.value = '59';
             addLog();
         }
     });

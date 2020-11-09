@@ -157,14 +157,21 @@
             document.body.classList.remove('dark_mode');
         }
 
-        /** Update locator value */
-        if (localStorage['PWWLo'] && localStorage['PWWLo'].length > 1) {
-            let loc = '';
-            for (var i = 0; i < localStorage['PWWLo'].length; i++) {
-                loc = loc.concat((i === 0) ? '' : ' ', (localStorage['finnish_fonetics'] == 1) ? ch2faff(localStorage['PWWLo'].toLowerCase().charAt(i)) : ch2nato(localStorage['PWWLo'].toLowerCase().charAt(i)) )
-            }
-            document.getElementById('locator').value = loc;
+        /** Update my locator value */
+        let loc = '';
+        for (var i = 0; i < localStorage['PWWLo'].length; i++) {
+            loc = loc.concat((i === 0) ? '' : ' ', (localStorage['finnish_fonetics'] == 1) ? ch2faff(localStorage['PWWLo'].toLowerCase().charAt(i)) : ch2nato(localStorage['PWWLo'].toLowerCase().charAt(i)) )
         }
+        document.getElementById('my_locator').innerHTML = localStorage['PWWLo'].toUpperCase();
+        document.getElementById('my_locator_fonetic').innerHTML = loc;
+
+        /** Update my callsign value */
+        loc = '';
+        for (var i = 0; i < localStorage['PCall'].length; i++) {
+            loc = loc.concat((i === 0) ? '' : ' ', (localStorage['finnish_fonetics'] == 1) ? ch2faff(localStorage['PCall'].toLowerCase().charAt(i)) : ch2nato(localStorage['PCall'].toLowerCase().charAt(i)) )
+        }
+        document.getElementById('my_callsign').innerHTML = localStorage['PCall'].toUpperCase();
+        document.getElementById('my_callsign_fonetic').innerHTML = loc;
 
         const listQSORecords = function (i) {
             finalEDI = finalEDI.concat("\n" + i[0] + ";" + i[1] + ";" + i[2] + ";" + i[3] + ";" + i[4] + ";;" + i[6] + ";;;" + i[5] + ";0;;N;N;");
@@ -196,9 +203,12 @@
 
     /** Method to clear logs */
     const clearLog = function () {
-        localStorage['QSORecords'] = JSON.stringify([]);
-        updateLog();
-        updatePage();
+      var r = confirm("Do you really want to clear the log?");
+      if (r == true) {
+          localStorage['QSORecords'] = JSON.stringify([]);
+          updateLog();
+          updatePage();
+      }
     }
     document.getElementById('log_reset').addEventListener('click', clearLog);
 
@@ -224,6 +234,7 @@
     /** Method to mark missing input */
     const markInputs = function() {
         document.querySelectorAll('.missing').forEach(x => x.classList.remove('missing'));
+        if (document.getElementById('log_time').value.length == 0) document.getElementById('log_time').classList.add('missing');
         if (document.getElementById('log_callsign').value.length == 0) document.getElementById('log_callsign').classList.add('missing');
         if (document.getElementById('log_mode').value.length == 0) document.getElementById('log_mode').classList.add('missing');
         if (document.getElementById('log_tx_rst').value.length == 0) document.getElementById('log_tx_rst').classList.add('missing');
@@ -243,17 +254,9 @@
             document.getElementById('log_loc').value.length > 0 &&
             document.getElementById('log_rx_rst').value.length > 0
         ) {
-            var current_time = '';
-            if (document.getElementById('log_time').value.length == 0) {
-                let ct = new Date();
-                current_time = ct.toISOString().match(/\d\d:\d\d/).toString().replaceAll(':', '');
-            } else {
-                current_time = document.getElementById('log_time').value.replaceAll(':', '');
-            }
-
             QSORecords.push([
                 document.getElementById('TDate').value.substr(2).replaceAll('-', ''),
-                current_time,
+                document.getElementById('log_time').value.replaceAll(':', ''),
                 document.getElementById('log_callsign').value.toUpperCase(),
                 document.getElementById('log_mode').value,
                 document.getElementById('log_tx_rst').value,
@@ -269,7 +272,7 @@
             document.getElementById('log_tx_rst').value = '';
             document.getElementById('log_loc').value = '';
             document.getElementById('log_rx_rst').value = '';
-            document.getElementById('log_callsign').focus();
+            document.getElementById('log_time').focus();
         }
 
         updateLog();
@@ -278,6 +281,18 @@
     document.getElementById('log_write').addEventListener('click', addLog)
 
     /** Log input enter magic */
+    document.getElementById('log_time').addEventListener("keydown", function (event) {
+        if ((event.keyCode === 13)||(event.keyCode === 9)) {
+            event.preventDefault();
+            if (this.value.length > 0) {
+                this.classList.remove('missing');
+            } else {
+                let ct = new Date();
+                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replaceAll(':', '');;
+            }
+            document.getElementById("log_callsign").focus();
+        }
+    });
     document.getElementById('log_callsign').addEventListener("keydown", function (event) {
         if (this.value.length > 0) this.classList.remove('missing');
         if (event.keyCode === 13) {

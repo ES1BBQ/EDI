@@ -246,6 +246,29 @@ input:checked + .slider:before {
     transform: translateX(20px);
 }
 
+/* My info */
+.my_info {
+    display: flex;
+}
+
+.my_info > div {
+    width: 50%;
+    font-size: 0.5em;
+}
+
+#my_callsign, #my_locator {
+  font-size: 4em;
+  font-weight: bolder;
+}
+
+#my_callsign_fonetic, #my_locator_fonetic {
+  font-size: 0.6em;
+  font-weight: bolder;
+  background-color: #748CAB;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
 /* Dark mode */
 
 body.dark_mode {
@@ -281,6 +304,12 @@ body.dark_mode {
     border: 1px solid #748CAB;
     -webkit-transition: .4s;
     transition: .4s;
+}
+
+.dark_mode #my_callsign_fonetic, .dark_mode #my_locator_fonetic {
+  color: #010513;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 /* Field completion check */

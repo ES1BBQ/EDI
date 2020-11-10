@@ -20,6 +20,16 @@ html, body {
     transition: .4s;
 }
 
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+}
+
+a:hover {
+    text-decoration-style: solid;
+}
+
 .header {
     margin-bottom: 2em;
 }

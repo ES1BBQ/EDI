@@ -384,8 +384,8 @@
 
         let qth_1 = a[Math.floor((180+lng_d)/20)];
         let qth_2 = a[Math.floor((90+lat_d)/10)];
-        let qth_3 = (lng_d - (10 * Math.floor(lng_d/10)))/2;
-        let qth_4 = lat_d - (10 * Math.floor(lat_d/10));
+        let qth_3 = Math.floor((lng_d - (10 * Math.floor(lng_d/10)))/2);
+        let qth_4 = Math.floor(lat_d - (10 * Math.floor(lat_d/10)));
         let qth_5 = a[Math.floor( ( lng - lng_d ) * 12 )];
         let qth_6 = a[Math.floor( ( lat - lat_d ) * 24 )];
         let qth = ''.concat(qth_1,qth_2,qth_3,qth_4,qth_5,qth_6);

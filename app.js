@@ -416,14 +416,26 @@
     const submitEDI = function() {
         var formData = new FormData();
         var log = new Blob([document.getElementById('finalEDI').value], { type: "text/plain"});
+        var url = "https://es7arl.carlnet.ee/ull/?p=saadalogi";
+
         formData.append("logifail", log);
-        
-        var request = new XMLHttpRequest();
-        request.addEventListener("load", function(e){
-            alert('Submitted!');
-        }, false);
-        request.open("POST", "https://es7arl.carlnet.ee/ull/?p=saadalogi");
-        request.send(formData);
+
+        const XHR = new XMLHttpRequest();
+        XHR.addEventListener( 'load', function(e) {
+            alert( 'Submitted!' );
+        } );
+        XHR.addEventListener( 'error', function(event) {
+            alert( 'Oops! Something went wrong.' );
+        } );
+
+        try{
+            XHR.open("POST", url, true);
+        } catch(e) {
+            alert('Error: ' + e.message);
+        }
+
+        XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+        XHR.send(formData);
     };
     document.getElementById('submitEDI').addEventListener("click", submitEDI);
 

@@ -417,8 +417,11 @@
         var formData = new FormData();
         var log = new Blob([document.getElementById('finalEDI').value], { type: "text/plain"});
         formData.append("logifail", log);
-
+        
         var request = new XMLHttpRequest();
+        request.addEventListener("load", function(e){
+            alert('Submitted!');
+        }, false);
         request.open("POST", "https://es7arl.carlnet.ee/ull/?p=saadalogi");
         request.send(formData);
     };

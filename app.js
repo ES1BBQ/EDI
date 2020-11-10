@@ -404,13 +404,25 @@
 
     /* Experimental feature: Allow downloading of log */
     const downloadEDI = function() {
-          let date = (localStorage['TDate'] && localStorage['TDate'].length > 0) ? ''.concat('_',localStorage['TDate'].replaceAll('-', '')) : '';
-          let call = (localStorage['PCall'] && localStorage['PCall'].length > 0) ? ''.concat('_',localStorage['PCall'].toLowerCase()) : '';
-          let filename = ''.concat('log',call,date,'.edi')
-          this.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent( document.getElementById('finalEDI').value ));
-          this.setAttribute('download', filename);
+        let date = (localStorage['TDate'] && localStorage['TDate'].length > 0) ? ''.concat('_',localStorage['TDate'].replaceAll('-', '')) : '';
+        let call = (localStorage['PCall'] && localStorage['PCall'].length > 0) ? ''.concat('_',localStorage['PCall'].toLowerCase()) : '';
+        let filename = ''.concat('log',call,date,'.edi')
+        this.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent( document.getElementById('finalEDI').value ));
+        this.setAttribute('download', filename);
     };
     document.getElementById('downloadEDI').addEventListener("click", downloadEDI);
+
+    /* Experimental feature: Allow submitting of log */
+    const submitEDI = function() {
+        var formData = new FormData();
+        var log = new Blob([document.getElementById('finalEDI').value], { type: "text/plain"});
+        formData.append("logifail", log);
+
+        var request = new XMLHttpRequest();
+        request.open("POST", "https://es7arl.carlnet.ee/ull/?p=saadalogi");
+        request.send(formData);
+    };
+    document.getElementById('submitEDI').addEventListener("click", submitEDI);
 
     /** Run all the scrips */
     document.querySelectorAll('.tabs-container').forEach(x => tabify(x));

@@ -178,7 +178,7 @@
         };
         var finalEDI = "[REG1TEST;1]\n";
         finalEDI = finalEDI.concat("TName=ULL kv ", (localStorage['PBand']) ? localStorage['PBand'] : document.getElementById('PBand').value, "\n");
-        finalEDI = finalEDI.concat("TDate=", (localStorage['TDate']) ? localStorage['TDate'].replaceAll('-', '') : '', ";", (localStorage['TDate']) ? localStorage['TDate'].replaceAll('-', '') : '', "\n");
+        finalEDI = finalEDI.concat("TDate=", (localStorage['TDate']) ? localStorage['TDate'].replace(/-/g, '') : '', ";", (localStorage['TDate']) ? localStorage['TDate'].replace(/-/g, '') : '', "\n");
         finalEDI = finalEDI.concat("PCall=", (localStorage['PCall']) ? localStorage['PCall'].toUpperCase() : '', "\n");
         finalEDI = finalEDI.concat("PWWLo=", (localStorage['PWWLo']) ? localStorage['PWWLo'].toUpperCase() : '', "\n");
         finalEDI = finalEDI.concat("PSect=", (localStorage['PSect']) ? localStorage['PSect'] : document.getElementById('PSect').value, "\n");
@@ -255,8 +255,8 @@
             document.getElementById('log_rx_rst').value.length > 0
         ) {
             QSORecords.push([
-                document.getElementById('TDate').value.substr(2).replaceAll('-', ''),
-                document.getElementById('log_time').value.replaceAll(':', ''),
+                document.getElementById('TDate').value.substr(2).replace(/-/g, ''),
+                document.getElementById('log_time').value.replace(/:/g, ''),
                 document.getElementById('log_callsign').value.toUpperCase(),
                 document.getElementById('log_mode').value,
                 document.getElementById('log_tx_rst').value,
@@ -288,7 +288,7 @@
                 this.classList.remove('missing');
             } else {
                 let ct = new Date();
-                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replaceAll(':', '');;
+                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '');;
             }
             document.getElementById("log_callsign").focus();
         }
@@ -404,7 +404,7 @@
 
     /* Experimental feature: Allow downloading of log */
     const downloadEDI = function() {
-        let date = (localStorage['TDate'] && localStorage['TDate'].length > 0) ? ''.concat('_',localStorage['TDate'].replaceAll('-', '')) : '';
+        let date = (localStorage['TDate'] && localStorage['TDate'].length > 0) ? ''.concat('_',localStorage['TDate'].replace(/-/g, '')) : '';
         let call = (localStorage['PCall'] && localStorage['PCall'].length > 0) ? ''.concat('_',localStorage['PCall'].toLowerCase()) : '';
         let filename = ''.concat('log',call,date,'.edi')
         this.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent( document.getElementById('finalEDI').value ));

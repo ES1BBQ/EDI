@@ -412,33 +412,6 @@
     };
     document.getElementById('downloadEDI').addEventListener("click", downloadEDI);
 
-    /* Experimental feature: Allow submitting of log */
-    const submitEDI = function() {
-        var formData = new FormData();
-        var log = new Blob([document.getElementById('finalEDI').value], { type: "text/plain"});
-        var url = "https://es7arl.carlnet.ee/ull/?p=saadalogi";
-
-        formData.append("logifail", log);
-
-        const XHR = new XMLHttpRequest();
-        XHR.addEventListener( 'load', function(e) {
-            alert( 'Submitted!' );
-        } );
-        XHR.addEventListener( 'error', function(event) {
-            alert( 'Oops! Something went wrong.' );
-        } );
-
-        try{
-            XHR.open("POST", url, true);
-        } catch(e) {
-            alert('Error: ' + e.message);
-        }
-
-        XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-        XHR.send(formData);
-    };
-    document.getElementById('submitEDI').addEventListener("click", submitEDI);
-
     /** Run all the scrips */
     document.querySelectorAll('.tabs-container').forEach(x => tabify(x));
     document.querySelectorAll('#edi_header input:not([type="checkbox"])').forEach(x => inputSaveAndRestore(x));

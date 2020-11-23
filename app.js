@@ -288,7 +288,7 @@
                 this.classList.remove('missing');
             } else {
                 let ct = new Date();
-                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '');;
+                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '');
             }
             document.getElementById("log_callsign").focus();
         }
@@ -378,16 +378,20 @@
         let lng = pos.coords.longitude;
         let lat = pos.coords.latitude;
 
-        /* Decimals */
-        let lng_d = Math.floor(lng);
-        let lat_d = Math.floor(lat);
+        let lng_a = lng + 180;
+        let lat_a = lat + 90;
 
-        let qth_1 = a[Math.floor((180+lng_d)/20)];
-        let qth_2 = a[Math.floor((90+lat_d)/10)];
-        let qth_3 = Math.floor((lng_d - (10 * Math.floor(lng_d/10)))/2);
-        let qth_4 = Math.floor(lat_d - (10 * Math.floor(lat_d/10)));
-        let qth_5 = a[Math.floor( ( lng - lng_d ) * 12 )];
-        let qth_6 = a[Math.floor( ( lat - lat_d ) * 24 )];
+        let qth_1 = a[Math.trunc(lng_a/20)].toUpperCase();
+        let qth_2 = a[Math.trunc(lat_a/10)].toUpperCase();
+        let qth_3 = Math.trunc(lng_a/2 % 10);
+        let qth_4 = Math.trunc((lat_a) % 10);
+
+        let lng_b = (lng_a - 2*Math.trunc(lng_a/2)) * 12;
+        let lat_b = (lat_a - Math.trunc(lat_a)) * 24;
+
+        let qth_5 = a[Math.trunc(lng_b)];
+        let qth_6 = a[Math.trunc(lat_b)];
+
         let qth = ''.concat(qth_1,qth_2,qth_3,qth_4,qth_5,qth_6);
         document.getElementById('PWWLo').value = qth;
         localStorage['PWWLo'] = qth;

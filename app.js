@@ -174,7 +174,7 @@
         document.getElementById('my_callsign_fonetic').innerHTML = loc;
 
         const listQSORecords = function (i) {
-            finalEDI = finalEDI.concat("\n" + localStorage['TDate'].replace(/-/g, '') + ";" + i[0].replace(/./g, '').replace(/:/g, '') + ";" + i[1] + ";" + i[2] + ";" + i[3] + ";;" + i[5] + ";;;" + i[4] + ";0;;N;N;");
+            finalEDI = finalEDI.concat("\n" + localStorage['TDate'].replace(/-/g, '') + ";" + i[0] + ";" + i[1] + ";" + i[2] + ";" + i[3] + ";;" + i[5] + ";;;" + i[4] + ";0;;N;N;");
         };
         var finalEDI = "[REG1TEST;1]\n";
         finalEDI = finalEDI.concat("TName=ULL kv ", (localStorage['PBand']) ? localStorage['PBand'] : document.getElementById('PBand').value, "\n");

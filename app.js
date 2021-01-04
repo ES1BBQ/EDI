@@ -248,7 +248,7 @@
 
         if (document.getElementById('log_time').value.length <= 0) {
             let ct = new Date();
-            document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '').replace(/./g, '');
+            document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '').replace(/\./g, '');
         }
 
         if (
@@ -291,7 +291,7 @@
                 this.classList.remove('missing');
             } else {
                 let ct = new Date();
-                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '').replace(/./g, '');
+                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '').replace(/\./g, '');
             }
             document.getElementById("log_callsign").focus();
         }

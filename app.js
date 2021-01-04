@@ -256,8 +256,8 @@
             QSORecords.push([
                 document.getElementById('log_time').value.replace(/:/g, ''),
                 document.getElementById('log_callsign').value.toUpperCase(),
-                document.getElementById('log_mode').value,
                 document.getElementById('log_loc').value.toUpperCase(),
+                document.getElementById('log_mode').value,
                 document.getElementById('log_tx_rst').value,
                 document.getElementById('log_rx_rst').value
             ]);
@@ -266,10 +266,10 @@
             /* Reset form values */
             document.getElementById('log_time').value = '';
             document.getElementById('log_callsign').value = '';
-            //document.getElementById('log_mode').value = '';
-            document.getElementById('log_tx_rst').value = '';
+            // document.getElementById('log_mode').value = '';
+            // document.getElementById('log_tx_rst').value = '';
+            // document.getElementById('log_rx_rst').value = '';
             document.getElementById('log_loc').value = '';
-            document.getElementById('log_rx_rst').value = '';
             document.getElementById('log_time').focus();
         }
 
@@ -295,6 +295,13 @@
         if (this.value.length > 0) this.classList.remove('missing');
         if (event.keyCode === 13) {
             event.preventDefault();
+            if (this.value.length > 0) document.getElementById("log_loc").focus();
+        }
+    });
+    document.getElementById('log_loc').addEventListener("keydown", function (event) {
+        if (this.value.length > 0) this.classList.remove('missing');
+        if (event.keyCode === 13) {
+            event.preventDefault();
             if (this.value.length > 0) document.getElementById("log_mode").focus();
         }
     });
@@ -312,14 +319,7 @@
               this.value = '59';
               this.classList.remove('missing');
             }
-            document.getElementById("log_loc").focus();
-        }
-    });
-    document.getElementById('log_loc').addEventListener("keydown", function (event) {
-        if (this.value.length > 0) this.classList.remove('missing');
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            if (this.value.length > 0) document.getElementById("log_rx_rst").focus();
+            document.getElementById("log_rx_rst").focus();
         }
     });
     document.getElementById('log_rx_rst').addEventListener("keydown", function (event) {

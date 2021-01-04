@@ -174,7 +174,7 @@
         document.getElementById('my_callsign_fonetic').innerHTML = loc;
 
         const listQSORecords = function (i) {
-            finalEDI = finalEDI.concat("\n" + i[0] + ";" + i[1] + ";" + i[2] + ";" + i[3] + ";" + i[4] + ";;" + i[6] + ";;;" + i[5] + ";0;;N;N;");
+            finalEDI = finalEDI.concat("\n" + localStorage['TDate'].replace(/-/g, '') + ";" + i[0].replace(/./g, '').replace(/:/g, '') + ";" + i[1] + ";" + i[2] + ";" + i[3] + ";;" + i[5] + ";;;" + i[4] + ";0;;N;N;");
         };
         var finalEDI = "[REG1TEST;1]\n";
         finalEDI = finalEDI.concat("TName=ULL kv ", (localStorage['PBand']) ? localStorage['PBand'] : document.getElementById('PBand').value, "\n");
@@ -234,7 +234,6 @@
     /** Method to mark missing input */
     const markInputs = function() {
         document.querySelectorAll('.missing').forEach(x => x.classList.remove('missing'));
-        if (document.getElementById('log_time').value.length == 0) document.getElementById('log_time').classList.add('missing');
         if (document.getElementById('log_callsign').value.length == 0) document.getElementById('log_callsign').classList.add('missing');
         if (document.getElementById('log_mode').value.length == 0) document.getElementById('log_mode').classList.add('missing');
         if (document.getElementById('log_tx_rst').value.length == 0) document.getElementById('log_tx_rst').classList.add('missing');
@@ -246,6 +245,12 @@
     const addLog = function () {
         const QSORecords = JSON.parse(localStorage['QSORecords'] || "[]");
         markInputs();
+
+        if (document.getElementById('log_time').value.length <= 0) {
+            let ct = new Date();
+            document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '').replace(/./g, '');
+        }
+
         if (
             document.getElementById('log_callsign').value.length > 0 &&
             document.getElementById('log_mode').value.length > 0 &&
@@ -270,7 +275,7 @@
             // document.getElementById('log_tx_rst').value = '';
             // document.getElementById('log_rx_rst').value = '';
             document.getElementById('log_loc').value = '';
-            document.getElementById('log_time').focus();
+            document.getElementById('log_callsign').focus();
         }
 
         updateLog();
@@ -286,7 +291,7 @@
                 this.classList.remove('missing');
             } else {
                 let ct = new Date();
-                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '');
+                document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '').replace(/./g, '');
             }
             document.getElementById("log_callsign").focus();
         }

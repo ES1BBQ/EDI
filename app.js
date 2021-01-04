@@ -218,7 +218,7 @@
         const genQSORecords = function (j) {
             let row = document.createElement('div');
             row.className = "logRow"
-            for (var i = 1; i < j.length; i++) {
+            for (var i = 0; i < j.length; i++) {
                 let cell = document.createElement('div');
                 cell.innerHTML = j[i];
                 row.appendChild(cell);
@@ -247,7 +247,6 @@
         const QSORecords = JSON.parse(localStorage['QSORecords'] || "[]");
         markInputs();
         if (
-            document.getElementById('TDate').value.length > 0 &&
             document.getElementById('log_callsign').value.length > 0 &&
             document.getElementById('log_mode').value.length > 0 &&
             document.getElementById('log_tx_rst').value.length > 0 &&
@@ -255,12 +254,11 @@
             document.getElementById('log_rx_rst').value.length > 0
         ) {
             QSORecords.push([
-                document.getElementById('TDate').value.substr(2).replace(/-/g, ''),
                 document.getElementById('log_time').value.replace(/:/g, ''),
                 document.getElementById('log_callsign').value.toUpperCase(),
                 document.getElementById('log_mode').value,
-                document.getElementById('log_tx_rst').value,
                 document.getElementById('log_loc').value.toUpperCase(),
+                document.getElementById('log_tx_rst').value,
                 document.getElementById('log_rx_rst').value
             ]);
             localStorage['QSORecords'] = JSON.stringify(QSORecords);

@@ -400,7 +400,12 @@
 
     document.getElementById('locate_me').addEventListener('click', function(){
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(locateMe);
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+            navigator.geolocation.getCurrentPosition(locateMe, null, options);
         } else {
             alert("Geolocation is not supported by this browser.");
         }

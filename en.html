@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>ES1BBQ EDI logirakendus</title>
+    <title>Simple EDI Generaator by ES1BBQ</title>
     <meta content="Generate EDI logs for ES ULL competition" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
@@ -27,26 +27,26 @@
 <body>
 
 <div class="header centered">
-    <h1>EDI logirakendus</h1>
-    Infoks: Rakendus salvestab andmed kohaliku veebilehitsejasse.
+    <h1>Simple EDI Generator</h1>
+    Uses Browser Local Storage to save your data
 </div>
 
 <div class="wrapper">
     <div class="tabs-container">
         <ul class="tabs-header">
-            <li>Seadistused</li>
-            <li class="default-tab">Logi</li>
-            <li>Tulem</li>
-            <li>Abi</li>
+            <li>Headers</li>
+            <li class="default-tab">Log</li>
+            <li>Result</li>
+            <li>Help</li>
         </ul>
         <div class="tabs">
             <div class="container framed tab" id="edi_header">
                 <div class="centered">
-                    <label for="TDate">Kuupäev:</label>
+                    <label for="TDate">Date:</label>
                     <input id="TDate" type="date" placeholder="yyyy-mm-dd">
                 </div>
                 <div class="centered">
-                    <label for="PSect">Klass:</label>
+                    <label for="PSect">Class:</label>
                     <select id="PSect">
                         <option>A</option>
                         <option>B1</option>
@@ -54,7 +54,7 @@
                     </select>
                 </div>
                 <div class="centered">
-                    <label for="PBand">Sagedus:</label>
+                    <label for="PBand">Band:</label>
                     <select id="PBand">
                         <option>50 MHz</option>
                         <option>144 MHz</option>
@@ -64,19 +64,19 @@
                 </div>
                 <hr>
                 <div class="centered">
-                    <label for="PCall">Kutsung:</label>
+                    <label for="PCall">Callsign:</label>
                     <input id="PCall" style="text-transform:uppercase" type="text">
                 </div>
                 <div class="centered">
-                    <label for="RName">Nimi:</label>
+                    <label for="RName">Name:</label>
                     <input id="RName" type="text">
                 </div>
                 <div class="centered">
-                    <label for="PWWLo">Lokaator: <button id="locate_me">&#8982;</button></label>
+                    <label for="PWWLo">Locator: <button id="locate_me">&#8982;</button></label>
                     <input id="PWWLo" style="text-transform:uppercase" type="text">
                 </div>
                 <div class="centered">
-                    <label for="RCoun">Riik:</label>
+                    <label for="RCoun">Country:</label>
                     <select id="RCoun">
                         <option>Estonia</option>
                         <option>Finland</option>
@@ -85,28 +85,28 @@
                 </div>
                 <hr>
                 <div class="centered">
-                    <label for="STXEq">Saatja (jaama mudel):</label>
+                    <label for="STXEq">Transmitter:</label>
                     <input id="STXEq" type="text">
                 </div>
                 <div class="centered">
-                    <label for="SPowe">Võimsus:</label>
+                    <label for="SPowe">Transmitting Power:</label>
                     <input id="SPowe" type="number">
                 </div>
                 <div class="centered">
-                    <label for="SRXEq">Vastuvõtja (jaama mudel):</label>
+                    <label for="SRXEq">Receiver:</label>
                     <input id="SRXEq" type="text">
                 </div>
                 <div class="centered">
-                    <label for="SAnte">Antenn:</label>
+                    <label for="SAnte">Antenna:</label>
                     <input id="SAnte" type="text">
                 </div>
                 <div class="centered">
-                    <label for="SAntH">Antenni kõrgus:</label>
+                    <label for="SAntH">Antenna Height:</label>
                     <input id="SAntH" type="number">
                 </div>
                 <hr>
                 <div class="centered">
-                    <label for="remarks">Märkused:</label>
+                    <label for="remarks">Remarks:</label>
                     <input id="remarks" type="text">
                 </div>
             </div>
@@ -114,29 +114,29 @@
                 <div class="centered">
                     <div class="my_info">
                         <div class="framed">
-                            Minu Kutsung:
+                            My Callsign:
                             <div id="my_callsign"></div>
                             <div id="my_callsign_fonetic"></div>
                         </div>
                         <div class="framed">
-                            Minu Lokaator:
+                            My Locator:
                             <div id="my_locator"></div>
                             <div id="my_locator_fonetic"></div>
                         </div>
                     </div>
                     <br>
                     <div>
-                        <button id="log_reset">Puhasta logi</button>
+                        <button id="log_reset">Clear Log</button>
                     </div>
                 </div>
                 <hr>
                 <div class="centered" id="log_entry">
-                    <div>Aeg</div>
-                    <div>Kutsung</div>
+                    <div>Time</div>
+                    <div>Callsign</div>
                     <div>QTH</div>
-                    <div>Režiim</div>
-                    <div>Saadetud RST</div>
-                    <div>Saadud RST</div>
+                    <div>Mode</div>
+                    <div>Sent RST</div>
+                    <div>Received RST</div>
                     <div></div>
                     <div><input class="short" id="log_time" type="text"></div>
                     <div><input autofocus class="short" id="log_callsign" maxlength="10"
@@ -144,7 +144,7 @@
                     <div><input class="short" id="log_loc" maxlength="6" style="text-transform:uppercase" type="text"></div>
                     <div>
                         <select id="log_mode" class="short">
-                            <option value="0">Teadmata</option>
+                            <option value="0">Unknown</option>
                             <option value="1">SSB</option>
                             <option value="2">CW</option>
                             <option value="5">AM</option>
@@ -165,25 +165,25 @@
                     <textarea name="logifail" id="finalEDI"></textarea>
                 </div>
                 <div class="centered">
-                    <a href="#" id="downloadEDI" class="button">Lae alla log.edi</a>
+                    <a href="#" id="downloadEDI" class="button">Download log.edi</a>
                 </div>
             </div>
             <div class="container framed tab" id="help">
 
-                <h2>Logi sisestus</h2>
+                <h2>Log Entry</h2>
                 <p>
-                    <u>Kõik väljad on vajalikud!</u>
-                    Praegune UTC aeg sisestatakse logisse, kui logi väli on tühi logi sisestamisel. Sama kehtib välja
-                    valides tab või enter klahvi vajutades. RST väljadele sisestatakse vaikeväärtus 59 kui väljad on
-                    täitamata tab või enter klahvi vajutades.
+                    <u>All fields are required!</u>
+                    Current UTC time will be entered into log when Time field is left empty or when Time
+                    field is selected and Tab or Enter is pressed. Default value of 59 will
+                    be entered into selected RST fields when Tab or Enter is pressed.
                     <br><br>
-                    <b>Kutsungit</b> ja <b>Lokaatorit</b> <u>pole vaja</u> sisestada suurte tähtedega,
-                    seda tehakse automaatselt.
+                    <b>Callsigns</b> and <b>Locator</b> codes <u>do not</u> need to be
+                    entered in capital letters, this is done automatically.
                     <br><br>
-                    Režiimid:
+                    Modes:
                     <table>
-                        <tr><th>Kood</th><th>Saatmine</th><th>Vastuvõtmine</th></tr>
-                        <tr><td>0</td><td>Teadmata</td><td>Teadmata</td></tr>
+                        <tr><th>Mode code</th><th>TX mode</th><th>RX mode</th></tr>
+                        <tr><td>0</td><td>non of below</td><td>non of below</td></tr>
                         <tr><td>1</td><td>SSB</td><td>SSB</td></tr>
                         <tr><td>2</td><td>CW</td><td>CW</td></tr>
                         <tr><td>3</td><td>SSB</td><td>CW</td></tr>
@@ -196,13 +196,15 @@
                     </table>
                 </p>
                 <hr>
-                <h2>Seadistused</h2>
+                <h2>Required fields in Header section</h2>
                 <p>
-                    Seadistusjaotuses on vajalik kõikide väljade täitmine v.a märkmed. Osad veebilehitsejad sisaldavad
-                    kuupäeva valiku võimalust. Kuupäeva valikuta kasutajatele kuvatakse sobiv kuupäeva formaat.
+                    All fields in the Header section exept Remarks are required.
+                    Some browsers support date entry for the date field. For users
+                    with no date entry browser support, a suitable placeholder is
+                    available.
                     <br><br>
-                    <b>Kutsungit</b> ja <b>Lokaatorit</b> <u>pole vaja</u> sisestada suurte tähtedega,
-                    seda tehakse automaatselt.
+                    <b>Callsign</b> and <b>Locator</b> code <u>do not</u> need to be
+                    entered in capital letters, this is done automatically.
                 </p>
             </div>
         </div>
@@ -212,21 +214,21 @@
 <div class="footer centered">
     <div>
         <div>
-            <label for="dark_mode">Tume kujundus:</label>
+            <label for="dark_mode">Dark mode:</label>
             <label class="switch">
                 <input type="checkbox" id="dark_mode">
                 <span class="slider"></span>
             </label>
         </div>
         <div>
-            <label for="finnish_fonetics">Soome foneetika:</label>
+            <label for="finnish_fonetics">Use finnish fonetics:</label>
             <label class="switch">
                 <input type="checkbox" id="finnish_fonetics">
                 <span class="slider"></span>
             </label>
         </div>
         <div>
-            <a href="en.html">English</a>
+            <a href="index.html">Eesti keel</a>
         </div>
     </div>
     &copy; 2020 ES1BBQ

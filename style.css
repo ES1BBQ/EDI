@@ -269,6 +269,7 @@ input:checked + .slider:before {
 #my_callsign, #my_locator {
   font-size: 3em;
   font-weight: bolder;
+  line-height: 1.4em;
 }
 
 #my_callsign_fonetic, #my_locator_fonetic {

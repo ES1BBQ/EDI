@@ -12,9 +12,6 @@
     .container label {
         width: 100%;
     }
-    .footer label {
-        width: auto;
-    }
     .container input, .container select, .container textarea {
         width: 100%;
     }

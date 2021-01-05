@@ -22,6 +22,9 @@
         float: right;
         margin-top: 2em;
     }
+    #my_callsign, #my_locator {
+        font-size: 2em;
+    }
 }
 
 @media (max-width: 320px) {

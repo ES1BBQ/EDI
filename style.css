@@ -1,4 +1,28 @@
-/* General styles */
+@import url(https://fonts.googleapis.com/css?family=Quicksand);
+@import url(https://fonts.googleapis.com/css2?family=Dosis&display=swap);
+
+/**
+ * Color scheme
+ *
+ * Light (Grayish blue): #A4B3C8
+ * Dark (Rich Black FOGRA 29): #010513
+ * Red (Ruby Red): #A31621
+ * Green (Ao English): #157F1F
+ * Yellow (Maximum Yellow Red): #FFC857
+ */
+
+:root {
+    --main-colorschema-bg: #010513;
+    --main-colorschema-fg: #A4B3C8;
+    --main-colorschema-red: #A31621;
+    --main-colorschema-green: #157F1F;
+    --main-colorschema-yellow: #FFC857;
+}
+
+/**
+ * General styles
+ */
+
 *,
 *::before,
 *::after {
@@ -7,17 +31,14 @@
     border: 0;
     box-sizing: border-box;
     list-style: none;
+    font-family: 'Dosis', sans-serif;
 }
 
 html, body {
     width: 100%;
     height: 100%;
-    font-size: 1.00em;
-    font-family: 'Cairo', sans-serif;
-    color: #25283D;
-    background-color: #F4FAFF;
-    -webkit-transition: .4s;
-    transition: .4s;
+    background-color: var(--main-colorschema-bg);
+    color: var(--main-colorschema-fg);
 }
 
 a {
@@ -25,17 +46,34 @@ a {
     text-decoration: none;
 }
 
-.header {
-    margin-bottom: 2em;
+a:hover {
+    text-decoration: underline;
 }
 
-.footer {
-    margin-top: 2em;
+header, footer {
+    margin: 2em;
+    text-align: center;
 }
+
+hr {
+    width: 100%;
+    margin: 1em 0;
+    border-bottom: 1px solid var(--main-colorschema-fg);
+}
+
+.corner {
+    position: fixed;
+    top: 0.5em;
+    right: 0.5em;
+}
+
+/**
+ * Wrapper and content
+ */
 
 .wrapper {
     width: 90%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -62,7 +100,6 @@ input, textarea, select, button, .button {
     width: 30em;
     padding: 0.2rem;
     font-size: 0.9em;
-    font-family: 'Cairo', sans-serif;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -95,12 +132,6 @@ label {
     width: 25%;
 }
 
-hr {
-    width: 100%;
-    margin: 1em 0;
-    border-bottom: 1px solid #748CAB;
-}
-
 #locator {
     width: 25em;
     max-width: 100%;
@@ -125,7 +156,7 @@ hr {
 
 #log_entry div:nth-child(7n), #log .logRow div:nth-child(7n) {
     width: 4%;
-    border: 0px;
+    border: 0;
 }
 
 #log {
@@ -267,17 +298,17 @@ input:checked + .slider:before {
 }
 
 #my_callsign, #my_locator {
-  font-size: 3em;
-  font-weight: bolder;
-  line-height: 1.4em;
+    font-size: 3em;
+    font-weight: bolder;
+    line-height: 1.4em;
 }
 
 #my_callsign_fonetic, #my_locator_fonetic {
-  font-size: 0.7em;
-  font-weight: bolder;
-  background-color: #748CAB;
-  -webkit-transition: .4s;
-  transition: .4s;
+    font-size: 0.7em;
+    font-weight: bolder;
+    background-color: #748CAB;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 /* Dark mode */
@@ -318,13 +349,16 @@ body.dark_mode {
 }
 
 .dark_mode #my_callsign_fonetic, .dark_mode #my_locator_fonetic {
-  color: #010513;
-  -webkit-transition: .4s;
-  transition: .4s;
+    color: #010513;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 /* hack for locate-me button */
-label { position: relative; }
+label {
+    position: relative;
+}
+
 label > button {
     position: absolute;
     right: 0;

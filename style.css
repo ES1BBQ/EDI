@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Quicksand);
 @import url(https://fonts.googleapis.com/css2?family=Dosis&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap);
 
 /**
  * Color scheme
@@ -31,7 +32,7 @@
     border: 0;
     box-sizing: border-box;
     list-style: none;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Roboto Mono', sans-serif;
 }
 
 html, body {
@@ -166,6 +167,10 @@ label {
 
 #log .logRow {
     display: table-row;
+}
+
+#log .logRow:nth-child(5n+0) div {
+    background-color: #25283D;
 }
 
 #log .logRow div {

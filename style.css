@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Quicksand);
 @import url(https://fonts.googleapis.com/css2?family=Dosis&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap);
 
 /**
  * Color scheme
@@ -101,8 +101,8 @@ input, textarea, select, button, .button {
     width: 30em;
     padding: 0.2rem;
     font-size: 0.9em;
-    -webkit-transition: .4s;
-    transition: .4s;
+    background-color: var(--main-colorschema-fg);
+    color: var(--main-colorschema-bg);
 }
 
 input::placeholder {
@@ -118,8 +118,8 @@ input:disabled {
 }
 
 button, .button {
-    background-color: #748CAB;
-    color: #F4FAFF;
+    background-color: var(--main-colorschema-fg);
+    color: var(--main-colorschema-bg);
     width: 15em;
 }
 
@@ -310,10 +310,9 @@ input:checked + .slider:before {
 
 #my_callsign_fonetic, #my_locator_fonetic {
     font-size: 0.7em;
-    font-weight: bolder;
-    background-color: #748CAB;
-    -webkit-transition: .4s;
-    transition: .4s;
+    font-weight: bold;
+    background-color: var(--main-colorschema-fg);
+    color: var(--main-colorschema-bg);
 }
 
 /* Dark mode */

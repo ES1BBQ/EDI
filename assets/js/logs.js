@@ -114,7 +114,6 @@ const markInputs = function() {
 /** Method for adding log entries */
 const addLog = function () {
     const QSORecords = JSON.parse(localStorage['QSORecords'] || "[]");
-    markInputs();
 
     if (document.getElementById('log_time').value.length <= 0) {
         let ct = new Date();
@@ -122,6 +121,8 @@ const addLog = function () {
     } else {
         document.getElementById('log_time').value = document.getElementById('log_time').value.replace(/[^0-9]/g, '').substring(0,4);
     }
+
+    markInputs();
 
     if (
         document.getElementById('log_time').value.length === 4 &&

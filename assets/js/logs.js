@@ -103,6 +103,7 @@ export const updatePage = function () {
 /** Method to mark missing input */
 const markInputs = function() {
     document.querySelectorAll('.missing').forEach(x => x.classList.remove('missing'));
+    if (0 < document.getElementById('log_time').value.length && document.getElementById('log_time').value.length < 4) document.getElementById('log_time').classList.add('missing');
     if (document.getElementById('log_callsign').value.length === 0) document.getElementById('log_callsign').classList.add('missing');
     if (document.getElementById('log_mode').value.length === 0) document.getElementById('log_mode').classList.add('missing');
     if (document.getElementById('log_tx_rst').value.length === 0) document.getElementById('log_tx_rst').classList.add('missing');
@@ -117,10 +118,13 @@ const addLog = function () {
 
     if (document.getElementById('log_time').value.length <= 0) {
         let ct = new Date();
-        document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/:/g, '').replace(/\./g, '');
+        document.getElementById('log_time').value = ct.toISOString().match(/\d\d:\d\d/).toString().replace(/[^0-9]/g, '');
+    } else {
+        document.getElementById('log_time').value = document.getElementById('log_time').value.replace(/[^0-9]/g, '').substring(0,4);
     }
 
     if (
+        document.getElementById('log_time').value.length === 4 &&
         document.getElementById('log_callsign').value.length > 0 &&
         document.getElementById('log_mode').value.length > 0 &&
         document.getElementById('log_tx_rst').value.length > 0 &&
@@ -130,7 +134,7 @@ const addLog = function () {
         if (document.getElementById('log_edit').value != 0) {
             let e = document.getElementById('log_edit').value;
             QSORecords[e-1] = [
-                document.getElementById('log_time').value.replace(/:/g, ''),
+                document.getElementById('log_time').value.replace(/[^0-9]/g, ''),
                 document.getElementById('log_callsign').value.toUpperCase(),
                 document.getElementById('log_loc').value.toUpperCase(),
                 document.getElementById('log_mode').value,
@@ -139,7 +143,7 @@ const addLog = function () {
             ];
         } else {
             QSORecords.push([
-                document.getElementById('log_time').value.replace(/:/g, ''),
+                document.getElementById('log_time').value.replace(/[^0-9]/g, ''),
                 document.getElementById('log_callsign').value.toUpperCase(),
                 document.getElementById('log_loc').value.toUpperCase(),
                 document.getElementById('log_mode').value,

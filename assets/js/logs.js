@@ -5,9 +5,27 @@ export const refreshLogsTable = function () {
     document.getElementById('log').innerHTML = '';
 
     let nr = 0;
+    let _qsos = [];
+
     const genQSORecords = function (j) {
         let row = document.createElement('div');
-        row.className = "logRow"
+
+        /* check for duplicates */
+        _qsos.push(j[1]);
+        let _c = {}, i, value;
+        for (i = 0; i < _qsos.length; i++) {
+            value = _qsos[i];
+            if (typeof _c[value] === "undefined") {
+                _c[value] = 1;
+            } else {
+                _c[value]++;
+            }
+        }
+
+        if(_c[j[1]]>1)
+            row.className = "logRow logRowDuplicate"
+        else
+            row.className = "logRow"
 
         /* Add row numbers */
         nr+=1;

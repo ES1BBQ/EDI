@@ -354,6 +354,10 @@ input:checked + .slider:before {
     border-collapse: collapse;
 }
 
+#log .logRowDuplicate {
+    color: #eed202;
+}
+
 #log .logRow div {
     padding: 0.2em;
     border-bottom: 1px solid var(--main-colorschema-wrapper-frames);

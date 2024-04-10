@@ -25,6 +25,7 @@
 
     --main-colorschema-red: #A31621;
     --main-colorschema-green: #0C8F51;
+    --main-colorschema-yellow: #EED202;
  }
 
 *,
@@ -354,8 +355,13 @@ input:checked + .slider:before {
     border-collapse: collapse;
 }
 
-#log .logRowDuplicate {
-    color: #eed202;
+#log .logRow div:nth-child(3) {
+    font-weight: bold;
+    color: var(--main-colorschema-fg);
+ }
+
+#log .logRowDuplicate, #log .logRowDuplicate div:nth-child(3) {
+    color: var(--main-colorschema-yellow);
 }
 
 #log .logRow div {

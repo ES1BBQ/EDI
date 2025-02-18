@@ -85,6 +85,8 @@ export const updatePage = function () {
     let PBand;
     if (!localStorage['PSect'] || localStorage['PSect'] === 'SIX-A' || localStorage['PSect'] === 'SIX-B') {
         PBand = "50 MHz"
+    } else if (localStorage['PSect'] === 'FOUR') {
+        PBand = "70 MHz"
     } else if (localStorage['PSect'] === 'A-144' || localStorage['PSect'] === 'B-144') {
         PBand = "144 MHz"
     } else if (localStorage['PSect'] === 'A-432' || localStorage['PSect'] === 'B-432') {
